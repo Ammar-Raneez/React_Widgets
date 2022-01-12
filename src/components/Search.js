@@ -20,7 +20,15 @@ function Search() {
       setResults(data.query.search);
     };
 
-    if (term) search();
+    // throttle requests to prevent requests sent whenever you type
+    const timeoutId = setTimeout(() => {
+      if (term) search();
+    }, 500);
+
+    // cleanup - called just before the next useEffect runs
+    return () => {
+      clearTimeout(timeoutId);
+    }
   }, [term]);
 
   const renderedResults = results.map((result) => {
