@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
 // eslint-disable-next-line no-unused-vars
 import Accordion from "./components/Accordion";
 // eslint-disable-next-line no-unused-vars
 import Search from "./components/Search";
+// eslint-disable-next-line no-unused-vars
 import Dropdown from "./components/Dropdown";
+import Translate from "./components/Translate";
 
 // eslint-disable-next-line no-unused-vars
 const items = [
@@ -22,6 +24,7 @@ const items = [
   },
 ];
 
+// eslint-disable-next-line no-unused-vars
 const options = [
   {
     label: "The Color Red",
@@ -38,15 +41,9 @@ const options = [
 ];
 
 const App = () => {
-  const [selected, setSelected] = useState(options[0]);
-
   return (
     <div>
-      <Dropdown
-        selected={selected}
-        onSelectedChange={setSelected}
-        options={options}
-      />
+      <Translate />
     </div>
   );
 };
