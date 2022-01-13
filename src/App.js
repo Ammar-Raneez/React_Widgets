@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // eslint-disable-next-line no-unused-vars
 import Accordion from "./components/Accordion";
@@ -38,9 +38,15 @@ const options = [
 ];
 
 const App = () => {
+  const [selected, setSelected] = useState(options[0]);
+
   return (
     <div>
-      <Dropdown options={options} />
+      <Dropdown
+        selected={selected}
+        onSelectedChange={setSelected}
+        options={options}
+      />
     </div>
   );
 };
