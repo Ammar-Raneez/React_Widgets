@@ -3,7 +3,21 @@ import axios from "axios";
 
 function Search() {
   const [term, setTerm] = useState("programming");
+
+  // create another state to track the time lagged request
+  const [debouncedTerm, setDebouncedTerm] = useState(term);
   const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedTerm(term);
+    }, 1000);
+
+    // cleanup - called just before the next useEffect runs
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [term]);
 
   useEffect(() => {
     const search = async () => {
@@ -13,23 +27,15 @@ function Search() {
           list: "search",
           origin: "*",
           format: "json",
-          srsearch: term,
+          srsearch: debouncedTerm,
         },
       });
 
       setResults(data.query.search);
     };
 
-    // throttle requests to prevent requests sent whenever you type
-    const timeoutId = setTimeout(() => {
-      if (term) search();
-    }, 500);
-
-    // cleanup - called just before the next useEffect runs
-    return () => {
-      clearTimeout(timeoutId);
-    }
-  }, [term]);
+    search();
+  }, [debouncedTerm]);
 
   const renderedResults = results.map((result) => {
     return (

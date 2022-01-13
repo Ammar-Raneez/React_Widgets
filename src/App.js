@@ -1,7 +1,10 @@
 import React from 'react';
+
+// eslint-disable-next-line no-unused-vars
 import Accordion from './components/Accordion';
 import Search from './components/Search';
 
+// eslint-disable-next-line no-unused-vars
 const items = [
   {
     title: "What is React?",
