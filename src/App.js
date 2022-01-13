@@ -1,8 +1,10 @@
-import React from 'react';
+import React from "react";
 
 // eslint-disable-next-line no-unused-vars
-import Accordion from './components/Accordion';
-import Search from './components/Search';
+import Accordion from "./components/Accordion";
+// eslint-disable-next-line no-unused-vars
+import Search from "./components/Search";
+import Dropdown from "./components/Dropdown";
 
 // eslint-disable-next-line no-unused-vars
 const items = [
@@ -20,10 +22,25 @@ const items = [
   },
 ];
 
+const options = [
+  {
+    label: "The Color Red",
+    value: "red",
+  },
+  {
+    label: "The Color Green",
+    value: "green",
+  },
+  {
+    label: "A Shade Of Blue",
+    value: "Blue",
+  },
+];
+
 const App = () => {
   return (
     <div>
-      <Search />
+      <Dropdown options={options} />
     </div>
   );
 };
